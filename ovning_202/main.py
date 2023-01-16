@@ -16,12 +16,13 @@ def dot_product(vec_1, vec_2):
 	result = None
 	# Implementera koden nedan
 
-	x1 = vec_1[0]
-	y1 = vec_1[1]
-	x2 = vec_2[0]
-	y2 = vec_2[1]
-
-	result = x1 * x2 + y1 * y2
+	''' kod vi skrivit: start '''
+	# endast tillåten båda vektorerna har lika många element
+	if (len(vec_1) == len(vec_2)):
+		result = 0
+		for i in range(len(vec_1)):
+			result += vec_1[i] * vec_2[i]
+	''' kod vi skrivit: slut '''
 
 	return result
 
@@ -39,8 +40,11 @@ def is_orthogonal(koord_axlar):
 	# som eventuellt ställer om variabeln result
 	# ...
 
+	''' kod vi skrivit: start '''
+	# stämmer om skalärprodukten är lika med noll
 	if dot_product(koord_axlar[0], koord_axlar[1]) == 0:
 		result = True
+	''' kod vi skrivit: slut '''
 
 	return result
 
@@ -59,22 +63,37 @@ def calc_proj(vektor, koord_axlar):
 	# resultatet i variabeln result
 	# ...
 
+	''' kod vi skrivit: start '''
+	# y är den inmattade vektorn fast lite annorlunda eftersom
+	# att vi vill ha vektorn i samma form som koordinat axlarna
+	# på formen [x y] istället för: [[x]
+	#                                [y]]
 	y = np.array([vektor[0][0], vektor[1][0]])
 	u1 = koord_axlar[0]
 	u2 = koord_axlar[1]
 
+	#   y • u1
+	# ---------
+	#  u1 • u1
 	factor = dot_product(y, u1) / dot_product(u1, u1)
 
 	y1 = np.multiply(factor, u1)
 
+	#   y • u2
+	# ---------
+	#  u2 • u2
 	factor = dot_product(y, u2) / dot_product(u2, u2)
 
 	y2 = np.multiply(factor, u2)
 
+	# tilldelar värdena i från projectionen till resultat matrisen
+	# [[y11 y21]  | den andra siffran representerar
+	#  [y12 y22]] | indexet i respektive matris
 	result[0][0] = y1[0]
 	result[0][1] = y2[0]
 	result[1][0] = y1[1]
 	result[1][1] = y2[1]
+	''' kod vi skrivit: slut '''
 
 	return result
 

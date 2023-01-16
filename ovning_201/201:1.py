@@ -15,13 +15,22 @@ def get_element(mat_A, mat_B, i, j):
 	# Här processas matriserna mat_A och mat_B
 	# samt att värdet på result uppdateras
 
-	cols_A = mat_A.shape[1]
-	rows_B = mat_B.shape[0]
+	''' kod vi skrivit: start '''
+	cols_A = mat_A.shape[1] # antalet kolonner i A
+	rows_B = mat_B.shape[0] # antalet rader i B
 
+	# om antalet kolonner i A
+	# är samma som antalet rader i B
+	# är matriserna multiplicerbara
 	if cols_A == rows_B:
 		result = 0
-		for col in range(cols_A):
-			result += A[i - 1][col] * B[col][j - 1]
+		# skalär produkten för raden i, kolonn j
+		for k in range(cols_A):
+			# rad i, kolonn k i A
+			# rad k, kolonn j i B
+			# i och j subtraheras med 1 eftersom att indexet i en ndarray börjar på 0, inte 1
+			result += A[i - 1][k] * B[k][j - 1]
+	''' kod vi skrivit: slut '''
 
 	return result
 
@@ -29,8 +38,6 @@ def get_element(mat_A, mat_B, i, j):
 A = np.array([[1, 2, 3], [4, 5, 6]]) # 2x3-matris
 B = np.array([[2, 3], [4, 5], [6, 7]]) # 3x2-matris
 i, j = 2, 1 # Sökt index, rad och kolonn
-
-print(np.dot(A, B))
 
 # Ändra inget under denna rad,
 # men ta gärna inspiration till det som

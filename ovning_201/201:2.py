@@ -16,19 +16,25 @@ def make_mat_product(mat_A, mat_B):
 	# för resultatmatrisen (givet att mat_A och mat_B
 	# är multiplicerbara)
 
+	''' kod vi skrivit: start '''
+	# några variabler
 	rows_A = mat_A.shape[0]
 	cols_A = mat_A.shape[1]
 	rows_B = mat_B.shape[0]
 	cols_B = mat_B.shape[1]
-	rows_C = rows_A
-	cols_C = cols_B
+	rows_C = rows_A # antalet rader i resultat matrisen är densamma som antalet rader i den första matrisen
+	cols_C = cols_B # antalet kolonner i resultat matrisen är densamma som antalet kolonner i den andra matrisen
 
-	if cols_A == rows_B:
-		mat_C = np.zeros([rows_C, cols_C])
+	if cols_A == rows_B: # kollar att matriserna går att mutliplicera med varandra
+		mat_C = np.zeros([rows_C, cols_C]) # skapar resultat matrisen
 
-		for row in range(rows_C):
-			for col in range(cols_C):
+		for row in range(rows_C): # för varje rad...
+			for col in range(cols_C): # och varje kolonn...
+				# anropar vi funktionen get_element och
+				# tilldelar värdet till den korresponderande
+				# positionen i resultat matrisen
 				mat_C[row][col] = get_element(mat_A, mat_B, row + 1, col + 1)
+	''' kod vi skrivit: slut '''
 
 	# Processa multiplikationen genom upprepade
 	# anrop till get_element. Uppdatering av
